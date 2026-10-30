@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Interactive SQL Operations Console | EV Database Explorer{% endblock %}
+
+{% block content %}
+<div class="row align-items-center mb-4">
+  <div class="col-lg-8">
+    <div class="d-flex align-items-center gap-3">
+      <div class="p-3 rounded-4 bg-primary bg-opacity-25 text-primary fs-3">
+        <i class="fa-solid fa-database"></i>
+      </div>
+      <div>
+        <h2 class="fw-bold mb-1 text-white">Interactive SQL Operations Console</h2>
+        <p class="text-muted mb-0">Direct SQL execution engine connecting to SQLite database: <code>data/database/ev_market.db</code></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 mt-3 mt-lg-0 text-lg-end">
+    <span class="badge badge-tech"><i class="fa-solid fa-server me-1"></i> SQLite 3 | Normalized Schema & Views</span>
+  </div>
+</div>
+
+<!-- SQL Editor & Prebuilt Queries -->
+<div class="row g-4 mb-4">
+  <!-- Query Presets -->
+  <div class="col-lg-4">
+    <div class="glass-card h-100 p-4">
+      <h6 class="text-white fw-bold mb-3"><i class="fa-solid fa-list-check me-2 text-info"></i> Pre-Built Analytical Queries</h6>
+      <p class="text-muted small mb-3">Click any query below to populate the SQL editor and execute against the active EV dataset:</p>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-sm btn-outline-custom text-start" onclick="loadPrebuiltSql('emily_sales')">
+          <i class="fa-solid fa-chart-pie me-2 text-primary"></i> Emily: Category Sales & Revenue (2025)
+        </button>
+        <button class="btn btn-sm btn-outline-custom text-start" onclick="loadPrebuiltSql('emily_top10')">
+          <i class="fa-solid fa-trophy me-2 text-warning"></i> Emily: Top 10 Best-Selling Models
+        </button>
+        <button class="btn btn-sm btn-outline-custom text-start" onclick="loadPrebuiltSql('david_market_share')">
+          <i class="fa-solid fa-ranking-star me-2 text-info"></i> David: OEM Global Market Share Ranking
+        </button>
+        <button class="btn btn-sm btn-outline-custom text-start" onclick="loadPrebuiltSql('david_hubs')">
+          <i class="fa-solid fa-earth-americas me-2 text-primary"></i> David: Manufacturing Hubs vs Export Markets
+        </button>
+        <button class="btn btn-sm btn-outline-custom text-start" onclick="loadPrebuiltSql('sarah_battery_evo')">
+          <i class="fa-solid fa-arrow-trend-up me-2 text-success"></i> Dr. Sarah: Battery Evolution (2020-2025)
+        </button>
+        <button class="btn btn-sm btn-outline-custom text-start" onclick="loadPrebuiltSql('sarah_co2')">
+          <i class="fa-solid fa-tree me-2 text-success"></i> Dr. Sarah: Fleet Decarbonization & CO2
+        </button>
+      </div>
+
+      <hr class="border-secondary border-opacity-25 my-3">
+      <small class="text-muted d-block">
+        <strong>Available Database Tables & Views:</strong><br>
+        <code>manufacturers</code>, <code>models</code>, <code>battery_technologies</code>, <code>ev_market_records</code>, 
+        <code>vw_ev_master_analytics</code>, <code>vw_executive_sales_summary</code>, <code>vw_manufacturer_competitive_intel</code>, <code>vw_battery_innovation_sustainability</code>
+      </small>
+    </div>
+  </div>
+
+  <!-- Query Editor & Output -->
+  <div class="col-lg-8">
+    <div class="glass-card h-100 p-4">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <label for="sqlQueryEditor" class="text-white fw-bold small"><i class="fa-solid fa-terminal me-2 text-cyan"></i> SQL Query Editor</label>
+        <span class="badge bg-secondary">Read-Only Safety Sandbox</span>
+      </div>
+      
+      <textarea id="sqlQueryEditor" class="sql-editor mb-3" rows="6" placeholder="Enter your SELECT SQL query here...">SELECT vehicle_category, SUM(annual_sales_units) AS total_units, ROUND(SUM(total_revenue_usd)/1e9, 2) AS revenue_billion_usd, ROUND(AVG(customer_rating), 2) AS avg_rating FROM vw_ev_master_analytics WHERE year = 2025 GROUP BY vehicle_category ORDER BY total_units DESC;</textarea>
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div id="sqlStatusText" class="small text-muted">Ready to execute.</div>
+        <button class="btn btn-primary-gradient px-4" onclick="runSqlQuery()">
+          <i class="fa-solid fa-play me-1"></i> Run SQL Query
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Results Table Container -->
+<div class="row">
+  <div class="col-12">
+    <div class="glass-card p-4">
+      <h6 class="text-white fw-bold mb-3"><i class="fa-solid fa-table me-2 text-info"></i> Query Execution Output</h6>
+      <div id="sqlResultsContainer">
+        <p class="text-muted small">Execute a query above to view the dynamic dataset response.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    runSqlQuery();
+  });
+</script>
+{% endblock %}

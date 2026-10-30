@@ -1,0 +1,90 @@
+{
+    "metadata": {
+        "timestamp": "2026-10-30 18:50:12",
+        "total_records": 2500,
+        "database_size_bytes": 765952,
+        "csv_size_bytes": 620154
+    },
+    "query_latency_benchmarks": [
+        {
+            "query_name": "Scenario 1: Category Sales Aggregation & Ranking",
+            "avg_latency_ms": 0.671,
+            "min_latency_ms": 0.388,
+            "max_latency_ms": 3.906,
+            "p95_latency_ms": 1.294,
+            "status": "Optimal (< 10ms target)"
+        },
+        {
+            "query_name": "Scenario 2: Manufacturer Market Share & Geographic Distribution",
+            "avg_latency_ms": 0.546,
+            "min_latency_ms": 0.418,
+            "max_latency_ms": 1.463,
+            "p95_latency_ms": 0.994,
+            "status": "Optimal (< 10ms target)"
+        },
+        {
+            "query_name": "Scenario 3: Battery Chemistry Multi-Year Trend Analysis",
+            "avg_latency_ms": 2.439,
+            "min_latency_ms": 1.437,
+            "max_latency_ms": 4.396,
+            "p95_latency_ms": 4.13,
+            "status": "Optimal (< 10ms target)"
+        },
+        {
+            "query_name": "Complex Multi-Table Join & Subquery with Cost Ratio",
+            "avg_latency_ms": 3.167,
+            "min_latency_ms": 1.232,
+            "max_latency_ms": 45.804,
+            "p95_latency_ms": 4.99,
+            "status": "Optimal (< 10ms target)"
+        }
+    ],
+    "filter_utilization_benchmarks": [
+        {
+            "filter_combination": "Single Filter (Year = 2025)",
+            "matched_rows": 450,
+            "execution_time_ms": 0.248
+        },
+        {
+            "filter_combination": "Dual Filter (Year = 2025 AND Category = 'SUV')",
+            "matched_rows": 158,
+            "execution_time_ms": 0.26
+        },
+        {
+            "filter_combination": "Triple Filter (Year = 2025, Category = 'SUV', Tech = 'LFP')",
+            "matched_rows": 71,
+            "execution_time_ms": 1.115
+        },
+        {
+            "filter_combination": "Range Filter (Price Between 30K and 80K AND Range > 400km)",
+            "matched_rows": 817,
+            "execution_time_ms": 0.411
+        }
+    ],
+    "calculated_fields_benchmarks": [
+        {
+            "calculation_name": "Efficiency Metric (km / kWh calculation)",
+            "avg_overhead_ms": 0.346
+        },
+        {
+            "calculation_name": "Cost-Value Ratio (Price / Range calculation)",
+            "avg_overhead_ms": 0.346
+        },
+        {
+            "calculation_name": "Charging Speed Efficiency ((Range * 0.8) / Charge_Time)",
+            "avg_overhead_ms": 0.758
+        },
+        {
+            "calculation_name": "CO2 Abatement Intensity (CO2 Saved / Battery Footprint)",
+            "avg_overhead_ms": 0.546
+        }
+    ],
+    "data_rendering_summary": {
+        "total_rows_rendered": 2500,
+        "total_attributes": 32,
+        "database_storage_kb": 748.0,
+        "index_count": 7,
+        "avg_query_response_time_ms": 1.706,
+        "throughput_queries_per_sec": 586
+    }
+}

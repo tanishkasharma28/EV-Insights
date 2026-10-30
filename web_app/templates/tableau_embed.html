@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}Tableau BI Integration & Interactive Story Embed{% endblock %}
+
+{% block content %}
+<div class="row align-items-center mb-4">
+  <div class="col-lg-8">
+    <div class="d-flex align-items-center gap-3">
+      <div class="p-3 rounded-4 bg-info bg-opacity-25 text-info fs-3">
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+      <div>
+        <h2 class="fw-bold mb-1 text-white">Tableau BI Integration & Interactive Story</h2>
+        <p class="text-muted mb-0">Embed and interact with Tableau Dashboards & Story Scenes directly within Flask.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 mt-3 mt-lg-0 text-lg-end">
+    <span class="badge badge-tech"><i class="fa-solid fa-cloud me-1"></i> Tableau Public / Desktop Ready</span>
+  </div>
+</div>
+
+<!-- Tableau Public URL Configurator -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="glass-card p-3">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width: 800px;">
+          <span class="text-muted small fw-bold text-nowrap"><i class="fa-solid fa-link me-1 text-cyan"></i> Tableau Embed URL:</span>
+          <input type="text" id="tableauUrlInput" class="form-control form-control-sm bg-dark text-light border-secondary" 
+                 value="https://public.tableau.com/views/EVMarketPerformanceInsights/ExecutiveDashboard" 
+                 placeholder="Enter Tableau Public Share URL">
+          <button class="btn btn-sm btn-primary-gradient text-nowrap" onclick="updateTableauFrame()">
+            <i class="fa-solid fa-arrows-rotate me-1"></i> Reload Tableau
+          </button>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="/data/tableau/ev_market_tableau_ready.csv" download class="btn btn-sm btn-outline-info">
+            <i class="fa-solid fa-file-csv me-1"></i> Download Cleaned CSV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Embedded Container -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="glass-card p-4">
+      <ul class="nav nav-pills mb-3" id="tableauTabs" role="tablist">
+        <li class="nav-item">
+          <button class="nav-link active" id="tab-embed-btn" data-bs-toggle="pill" data-bs-target="#tab-embed" type="button">
+            <i class="fa-solid fa-window-maximize me-1"></i> Tableau Frame
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="tab-guide-btn" data-bs-toggle="pill" data-bs-target="#tab-guide" type="button">
+            <i class="fa-solid fa-book me-1"></i> Connection & Setup Guide
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="tab-calcs-btn" data-bs-toggle="pill" data-bs-target="#tab-calcs" type="button">
+            <i class="fa-solid fa-calculator me-1"></i> 10+ Calculated Fields & LODs
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="tableauTabsContent">
+        <!-- Tab 1: Live Frame / Fallback -->
+        <div class="tab-pane fade show active" id="tab-embed">
+          <div class="rounded-4 overflow-hidden border border-secondary border-opacity-50" style="min-height: 650px; background: #070a13;">
+            <div id="tableauContainer" class="w-100 d-flex flex-column align-items-center justify-content-center p-5 text-center" style="min-height: 600px;">
+              <div class="p-4 rounded-4 bg-dark bg-opacity-75 border border-secondary border-opacity-50" style="max-width: 700px;">
+                <i class="fa-solid fa-chart-pie text-cyan display-3 mb-3"></i>
+                <h4 class="text-white fw-bold mb-2">Tableau Visualization & Story Hub</h4>
+                <p class="text-muted small mb-4">
+                  The project dataset and analytical schema are ready for 1-click loading in Tableau Desktop or publishing to Tableau Public. 
+                  Below are direct links to the packaged workbook, extracted data, and live persona dashboards.
+                </p>
+                <div class="d-flex justify-content-center gap-2 flex-wrap">
+                  <a href="{{ url_for('scenario_emily') }}" class="btn btn-sm btn-outline-info">
+                    <i class="fa-solid fa-chart-pie me-1"></i> Strategy Dashboard
+                  </a>
+                  <a href="{{ url_for('scenario_david') }}" class="btn btn-sm btn-outline-info">
+                    <i class="fa-solid fa-briefcase me-1"></i> BI Intel Dashboard
+                  </a>
+                  <a href="{{ url_for('scenario_sarah') }}" class="btn btn-sm btn-outline-info">
+                    <i class="fa-solid fa-leaf me-1"></i> Research Dashboard
+                  </a>
+                  <a href="{{ url_for('story') }}" class="btn btn-sm btn-primary-gradient">
+                    <i class="fa-solid fa-book-open me-1"></i> 5-Scene Story Mode
+                  </a>
+                </div>
+              </div>
+            </div>
+            <iframe id="tableauIframe" class="w-100" style="height: 750px; display: none; border: none;" src=""></iframe>
+          </div>
+        </div>
+
+        <!-- Tab 2: Setup Guide -->
+        <div class="tab-pane fade" id="tab-guide">
+          <div class="p-3">
+            <h5 class="text-white mb-3"><i class="fa-solid fa-circle-info text-info me-2"></i> How to Connect Tableau to the Project Data Source</h5>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
+                  <h6 class="text-info fw-bold mb-2">Step 1: Open Data Source in Tableau</h6>
+                  <ol class="text-muted small ps-3">
+                    <li class="mb-2">Launch Tableau Desktop or Tableau Public application.</li>
+                    <li class="mb-2">Under <strong>Connect</strong>, choose <strong>Text File</strong>.</li>
+                    <li class="mb-2">Select <code>data/tableau/ev_market_tableau_ready.csv</code>.</li>
+                    <li>Alternatively, connect via SQLite ODBC to <code>data/database/ev_market.db</code> and pick <code>vw_ev_master_analytics</code>.</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
+                  <h6 class="text-info fw-bold mb-2">Step 2: Build Visualizations & Publish</h6>
+                  <ol class="text-muted small ps-3">
+                    <li class="mb-2">Create the 12 unique visualizations outlined in the Design Guide.</li>
+                    <li class="mb-2">Assemble the 3 dashboards: Executive (Emily), BI Intel (David), and Clean Mobility (Dr. Sarah).</li>
+                    <li class="mb-2">Create the 5-Scene Story walkthrough.</li>
+                    <li>Click <strong>Server -> Tableau Public -> Save to Tableau Public</strong> and paste the link into the URL bar above!</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Calculated Fields & LOD Formulas -->
+        <div class="tab-pane fade" id="tab-calcs">
+          <div class="p-3">
+            <h5 class="text-white mb-3"><i class="fa-solid fa-square-root-variable text-warning me-2"></i> Tableau Calculated Fields & LOD Expressions Reference</h5>
+            <div class="table-responsive">
+              <table class="table table-custom">
+                <thead>
+                  <tr>
+                    <th>Calculated Field</th>
+                    <th>Tableau Formula Syntax</th>
+                    <th>Analytical Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-white fw-bold">Energy Efficiency (km/kWh)</td>
+                    <td><code>[Driving Range Km] / [Battery Capacity Kwh]</code></td>
+                    <td>Evaluates real-world battery energy conversion efficiency.</td>
+                  </tr>
+                  <tr>
+                    <td class="text-white fw-bold">Cost per KM of Range</td>
+                    <td><code>[Price Usd] / [Driving Range Km]</code></td>
+                    <td>Capital cost per kilometer of vehicle range.</td>
+                  </tr>
+                  <tr>
+                    <td class="text-white fw-bold">Category Sales Share (LOD)</td>
+                    <td><code>{FIXED [Year], [Vehicle Category]: SUM([Annual Sales Units])} / {FIXED [Year]: SUM([Annual Sales Units])}</code></td>
+                    <td>LOD formula for exact category market share unaffected by external filters.</td>
+                  </tr>
+                  <tr>
+                    <td class="text-white fw-bold">Charging Recovery Speed</td>
+                    <td><code>([Driving Range Km] * 0.8) / [Fast Charge Time Min]</code></td>
+                    <td>Range replenishment rate in km added per minute of DC fast-charging.</td>
+                  </tr>
+                  <tr>
+                    <td class="text-white fw-bold">CO2 Abatement Intensity</td>
+                    <td><code>([Co2 Saved Per Vehicle Annual Mt] * 1000) / [Battery Carbon Footprint Kg]</code></td>
+                    <td>Lifecycle sustainability index comparing emissions avoided to battery manufacturing footprint.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function updateTableauFrame() {
+    const url = document.getElementById("tableauUrlInput").value.trim();
+    const iframe = document.getElementById("tableauIframe");
+    const container = document.getElementById("tableauContainer");
+
+    if (url) {
+      let embedUrl = url;
+      if (!url.includes(":showVizHome=no")) {
+        embedUrl += (url.includes("?") ? "&" : "?") + ":showVizHome=no&:embed=true";
+      }
+      iframe.src = embedUrl;
+      iframe.style.display = "block";
+      container.style.display = "none";
+    }
+  }
+</script>
+{% endblock %}

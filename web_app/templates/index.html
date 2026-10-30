@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}Electric Vehicle Market Performance & Insights | Executive Overview{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="glass-card p-4 text-center position-relative overflow-hidden">
+      <span class="badge badge-tech mb-2">Automotive Analytics & Sustainable Mobility</span>
+      <h1 class="fw-bold mb-2">Electric Vehicle Market Performance & Insights</h1>
+      <p class="text-muted mx-auto" style="max-width: 850px;">
+        A comprehensive BI and data intelligence platform analyzing global EV adoption, battery technology evolutions, 
+        manufacturer competitive intelligence, pricing efficiency, and environmental decarbonization.
+      </p>
+      <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+        <a href="{{ url_for('scenario_emily') }}" class="btn btn-primary-gradient">
+          <i class="fa-solid fa-chart-pie me-1"></i> Strategy Director (Emily)
+        </a>
+        <a href="{{ url_for('scenario_david') }}" class="btn btn-outline-custom">
+          <i class="fa-solid fa-briefcase me-1"></i> BI Manager (David)
+        </a>
+        <a href="{{ url_for('scenario_sarah') }}" class="btn btn-outline-custom">
+          <i class="fa-solid fa-leaf me-1"></i> Mobility Researcher (Dr. Sarah)
+        </a>
+        <a href="{{ url_for('story') }}" class="btn btn-outline-info">
+          <i class="fa-solid fa-book-open me-1"></i> 5-Scene Story Walkthrough
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Executive Global KPIs -->
+<div class="row g-3 mb-4">
+  <div class="col-md-4 col-xl-2">
+    <div class="glass-card kpi-card p-3">
+      <div class="kpi-title"><i class="fa-solid fa-car-side me-1"></i> Global EV Sales (2025)</div>
+      <div class="kpi-value">{{ "{:,}".format(kpis.total_units) }}</div>
+      <div class="kpi-subtext"><i class="fa-solid fa-arrow-trend-up"></i> +48% YoY Expansion</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-2">
+    <div class="glass-card kpi-card p-3">
+      <div class="kpi-title"><i class="fa-solid fa-sack-dollar me-1"></i> Market Revenue</div>
+      <div class="kpi-value">${{ kpis.total_rev_bn }}B</div>
+      <div class="kpi-subtext"><i class="fa-solid fa-globe"></i> Global EV Industry</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-2">
+    <div class="glass-card kpi-card p-3">
+      <div class="kpi-title"><i class="fa-solid fa-road me-1"></i> Avg Driving Range</div>
+      <div class="kpi-value">{{ kpis.avg_range|int }} km</div>
+      <div class="kpi-subtext"><i class="fa-solid fa-battery-three-quarters"></i> Real-world efficiency</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-2">
+    <div class="glass-card kpi-card p-3">
+      <div class="kpi-title"><i class="fa-solid fa-star me-1 text-warning"></i> Customer Rating</div>
+      <div class="kpi-value">{{ kpis.avg_rating }} / 5.0</div>
+      <div class="kpi-subtext text-warning"><i class="fa-solid fa-thumbs-up"></i> High satisfaction</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-2">
+    <div class="glass-card kpi-card p-3">
+      <div class="kpi-title"><i class="fa-solid fa-industry me-1"></i> Active Global OEMs</div>
+      <div class="kpi-value">{{ kpis.total_mfg }} Brands</div>
+      <div class="kpi-subtext"><i class="fa-solid fa-network-wired"></i> Global footprint</div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xl-2">
+    <div class="glass-card kpi-card p-3">
+      <div class="kpi-title"><i class="fa-solid fa-tree me-1 text-success"></i> CO2 Abated</div>
+      <div class="kpi-value">{{ kpis.total_co2_mn_mt }}M MT</div>
+      <div class="kpi-subtext text-success"><i class="fa-solid fa-leaf"></i> Clean mobility offset</div>
+    </div>
+  </div>
+</div>
+
+<!-- Three Stakeholder Personas Section -->
+<div class="row g-4 mb-4">
+  <div class="col-lg-4">
+    <div class="glass-card h-100 d-flex flex-column justify-content-between p-4">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="p-2 rounded-3 bg-primary bg-opacity-25 text-primary fs-4">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <div>
+            <h5 class="mb-0 text-white">Scenario 1: Emily Johnson</h5>
+            <small class="text-muted">EV Market Strategy Director</small>
+          </div>
+        </div>
+        <p class="text-muted small">
+          Focuses on vehicle category sales contributions, leading models, customer satisfaction tiers, 
+          and optimizing product portfolios to capture fast-growing market segments.
+        </p>
+        <ul class="list-unstyled small text-light opacity-75">
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> SUV & Sedan Volume Leadership</li>
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Driving Range vs Price Quadrant Analysis</li>
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Customer Sentiment across Price Tiers</li>
+        </ul>
+      </div>
+      <a href="{{ url_for('scenario_emily') }}" class="btn btn-outline-info btn-sm w-100 mt-3">
+        Launch Strategy Dashboard <i class="fa-solid fa-arrow-right ms-1"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="glass-card h-100 d-flex flex-column justify-content-between p-4">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="p-2 rounded-3 bg-info bg-opacity-25 text-info fs-4">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <div>
+            <h5 class="mb-0 text-white">Scenario 2: David Chen</h5>
+            <small class="text-muted">Automotive BI Manager</small>
+          </div>
+        </div>
+        <p class="text-muted small">
+          Monitors OEM market share rankings, geographical manufacturing hubs, battery chemistry portfolios, 
+          and cost-per-kilometer competitive advantages.
+        </p>
+        <ul class="list-unstyled small text-light opacity-75">
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Global OEM Market Share Rankings</li>
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Regional Manufacturing Clusters (China, US, Germany)</li>
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Dollar Cost per Kilometer Range Benchmark</li>
+        </ul>
+      </div>
+      <a href="{{ url_for('scenario_david') }}" class="btn btn-outline-info btn-sm w-100 mt-3">
+        Launch BI Intel Dashboard <i class="fa-solid fa-arrow-right ms-1"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="glass-card h-100 d-flex flex-column justify-content-between p-4">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="p-2 rounded-3 bg-success bg-opacity-25 text-success fs-4">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <div>
+            <h5 class="mb-0 text-white">Scenario 3: Dr. Sarah Williams</h5>
+            <small class="text-muted">Sustainable Mobility Analyst</small>
+          </div>
+        </div>
+        <p class="text-muted small">
+          Studies technological shifts across LFP, NMC, NCA, Sodium-Ion, and Solid-State batteries, 
+          tracking range evolution, charging speed, and lifecycle decarbonization metrics.
+        </p>
+        <ul class="list-unstyled small text-light opacity-75">
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Battery Chemistry Evolution (2020-2025)</li>
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Peak Charging Power vs Battery Capacity</li>
+          <li><i class="fa-solid fa-check text-cyan me-1"></i> Fleet Decarbonization & Degradation Cycles</li>
+        </ul>
+      </div>
+      <a href="{{ url_for('scenario_sarah') }}" class="btn btn-outline-info btn-sm w-100 mt-3">
+        Launch Research Dashboard <i class="fa-solid fa-arrow-right ms-1"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Category Performance Table -->
+<div class="row">
+  <div class="col-12">
+    <div class="glass-card p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0 text-white"><i class="fa-solid fa-table-list me-2 text-primary"></i> 2025 Global EV Segment Performance Breakdown</h5>
+        <span class="badge bg-secondary">Latest Active Year Data</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-custom">
+          <thead>
+            <tr>
+              <th>Vehicle Category</th>
+              <th>Total Units Sold</th>
+              <th>Total Revenue ($)</th>
+              <th>Market Share (%)</th>
+              <th>Strategic Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cat in categories %}
+            <tr>
+              <td class="fw-bold text-white">{{ cat.vehicle_category }}</td>
+              <td>{{ "{:,}".format(cat.sales) }} units</td>
+              <td>${{ cat.rev }} Billion USD</td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span>{{ "%.1f"|format((cat.sales / kpis.total_units) * 100) }}%</span>
+                  <div class="progress flex-grow-1" style="height: 6px; background: rgba(255,255,255,0.1);">
+                    <div class="progress-bar bg-info" style="width: {{ (cat.sales / kpis.total_units) * 100 }}%;"></div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                {% if cat.vehicle_category in ['SUV', 'Sedan'] %}
+                  <span class="badge bg-primary">Core Growth Driver</span>
+                {% elif cat.vehicle_category == 'Two-Wheeler' %}
+                  <span class="badge bg-warning text-dark">High Volume Emerging</span>
+                {% elif cat.vehicle_category == 'Truck' %}
+                  <span class="badge bg-info text-dark">Rapid Expansion</span>
+                {% else %}
+                  <span class="badge bg-secondary">Specialized Commercial</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+# Python bytecode and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+*.env
+
+# SQLite local temporary files
+*.db-journal
+*.db-wal
+
+# OS files
+.DS_Store
+Thumbs.db

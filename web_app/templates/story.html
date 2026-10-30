@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Interactive Story: The Global Electric Vehicle Revolution{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+  <div class="col-12 text-center">
+    <span class="badge badge-tech mb-2">Narrative Business Intelligence</span>
+    <h2 class="fw-bold text-white mb-1">Interactive Story: The Global Electric Vehicle Revolution</h2>
+    <p class="text-muted small">A 5-Scene analytical narrative connecting market strategy, competitive intelligence, and clean technology.</p>
+  </div>
+</div>
+
+<!-- Story Progress Steps Indicator -->
+<div class="row justify-content-center mb-4">
+  <div class="col-lg-8">
+    <div class="story-step-indicator">
+      <div id="storyDot1" class="story-dot active" onclick="showStoryScene(1)" title="Scene 1: Market Inflection Point"></div>
+      <div id="storyDot2" class="story-dot" onclick="showStoryScene(2)" title="Scene 2: Emily's Strategy"></div>
+      <div id="storyDot3" class="story-dot" onclick="showStoryScene(3)" title="Scene 3: David's BI Intel"></div>
+      <div id="storyDot4" class="story-dot" onclick="showStoryScene(4)" title="Scene 4: Dr. Sarah's Tech Deep-Dive"></div>
+      <div id="storyDot5" class="story-dot" onclick="showStoryScene(5)" title="Scene 5: 2026-2030 Roadmap"></div>
+    </div>
+    <div class="d-flex justify-content-between text-muted small px-1">
+      <span>1. Inflection Point</span>
+      <span>2. Category Wars</span>
+      <span>3. OEM Dominance</span>
+      <span>4. Battery Tech</span>
+      <span>5. 2026-2030 Vision</span>
+    </div>
+  </div>
+</div>
+
+<!-- Story Container -->
+<div class="row justify-content-center" id="storyContainer">
+  <div class="col-lg-10">
+
+    <!-- SCENE 1 -->
+    <div id="storyScene1" class="glass-card p-4 p-lg-5 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-primary">Scene 1 of 5</span>
+        <span class="text-muted small"><i class="fa-solid fa-clock me-1"></i> Macro Market Overview (2020–2025)</span>
+      </div>
+      <h3 class="fw-bold text-white mb-3">The Global EV Inflection Point: From Niche to Mainstream</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-7">
+          <p class="lead text-light opacity-90">
+            Between 2020 and 2025, the automotive industry underwent the most seismic transformation in a century. 
+            Government zero-emission mandates, declining battery pack costs, and charging network expansions transformed 
+            electric mobility from an early-adopter novelty into the primary engine of global automotive growth.
+          </p>
+          <p class="text-muted">
+            Annual worldwide electric vehicle sales soared past <strong>95 million units</strong> in 2025, generating over 
+            <strong>$5.1 Trillion USD</strong> in cumulative annual economic value across passenger cars, commercial buses, and two-wheelers.
+          </p>
+          <div class="p-3 rounded-3 bg-secondary bg-opacity-25 border border-secondary border-opacity-25 mt-3">
+            <strong class="text-info d-block mb-1"><i class="fa-solid fa-bolt me-1"></i> Core Takeaway:</strong>
+            Total cost of ownership (TCO) parity has officially been achieved across passenger cars, with battery pack costs dropping below $95/kWh in late 2024.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="p-4 rounded-4 bg-dark border border-secondary border-opacity-50 text-center">
+            <i class="fa-solid fa-chart-line text-info display-4 mb-3"></i>
+            <h4 class="text-white fw-bold mb-1">+48% Compound Growth</h4>
+            <p class="text-muted small mb-0">Unprecedented 5-year compound annual growth rate in global EV deliveries.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 2 -->
+    <div id="storyScene2" class="glass-card p-4 p-lg-5 mb-4" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-info text-dark">Scene 2 of 5</span>
+        <span class="text-muted small"><i class="fa-solid fa-user-tie me-1"></i> Emily Johnson's Strategy Lens</span>
+      </div>
+      <h3 class="fw-bold text-white mb-3">Category Wars: SUVs Dominate Revenue While Two-Wheelers Capture Volume</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-7">
+          <p class="lead text-light opacity-90">
+            Emily Johnson’s analysis reveals that <strong>Electric SUVs</strong> have captured the commanding heights 
+            of market revenue, contributing over 50% of passenger vehicle revenues due to premium consumer willingness-to-pay.
+          </p>
+          <p class="text-muted">
+            Concurrently, <strong>Two-Wheelers</strong> in emerging markets (India, Southeast Asia, Latin America) have exploded 
+            in unit volume, proving that electrification speed is fastest where vehicle operating margins directly determine daily livelihood.
+          </p>
+          <div class="p-3 rounded-3 bg-secondary bg-opacity-25 border border-secondary border-opacity-25 mt-3">
+            <strong class="text-warning d-block mb-1"><i class="fa-solid fa-bullseye me-1"></i> Strategic Imperative:</strong>
+            Manufacturers cannot rely solely on luxury halo sedans. The highest velocity returns stem from mid-size SUVs ($35K–$45K) and localized urban two-wheelers.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="p-4 rounded-4 bg-dark border border-secondary border-opacity-50 text-center">
+            <i class="fa-solid fa-car-side text-warning display-4 mb-3"></i>
+            <h4 class="text-white fw-bold mb-1">50.8% Revenue Share</h4>
+            <p class="text-muted small mb-0">Electric SUVs deliver over half of all global consumer revenue in 2025.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 3 -->
+    <div id="storyScene3" class="glass-card p-4 p-lg-5 mb-4" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-warning text-dark">Scene 3 of 5</span>
+        <span class="text-muted small"><i class="fa-solid fa-briefcase me-1"></i> David Chen's Intelligence Brief</span>
+      </div>
+      <h3 class="fw-bold text-white mb-3">The Battle for Market Dominance: Vertical Integration vs Legacy Scale</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-7">
+          <p class="lead text-light opacity-90">
+            David Chen monitors the cutthroat market share duel between <strong>Tesla</strong> and <strong>BYD</strong>, 
+            which together control nearly 38% of the global pure EV market.
+          </p>
+          <p class="text-muted">
+            BYD's deep vertical integration—manufacturing its own LFP Blade cells, semiconductors, and electric drive units—has enabled 
+            aggressive pricing below $20,000 in domestic and international markets. Meanwhile, Western OEMs (Volkswagen, BMW, Hyundai) 
+            are rapidly accelerating dedicated 800V skateboard architectures to defend luxury market share.
+          </p>
+          <div class="p-3 rounded-3 bg-secondary bg-opacity-25 border border-secondary border-opacity-25 mt-3">
+            <strong class="text-info d-block mb-1"><i class="fa-solid fa-earth-asia me-1"></i> Geographical Shift:</strong>
+            China manufactures over 52% of all EVs and 70% of battery cells, prompting significant nearshoring in the US and Europe.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="p-4 rounded-4 bg-dark border border-secondary border-opacity-50 text-center">
+            <i class="fa-solid fa-handshake-simple text-primary display-4 mb-3"></i>
+            <h4 class="text-white fw-bold mb-1">Tesla vs BYD Duel</h4>
+            <p class="text-muted small mb-0">Combined volume exceeding 35 million vehicles annually by 2025.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 4 -->
+    <div id="storyScene4" class="glass-card p-4 p-lg-5 mb-4" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-success">Scene 4 of 5</span>
+        <span class="text-muted small"><i class="fa-solid fa-leaf me-1"></i> Dr. Sarah Williams' Research</span>
+      </div>
+      <h3 class="fw-bold text-white mb-3">Battery Innovation: Cobalt-Free LFP & The Solid-State Horizon</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-7">
+          <p class="lead text-light opacity-90">
+            Dr. Sarah Williams' research demonstrates how battery chemistry dictates vehicle economics, safety, and carbon intensity.
+          </p>
+          <p class="text-muted">
+            Cobalt-free <strong>Lithium Iron Phosphate (LFP)</strong> has become the dominant chemistry, conquering 40% of the market due to its 
+            3,000+ cycle lifespan and zero thermal runaway risk. Meanwhile, high-nickel NMC/NCA remains critical for 600+ km flagship vehicles, 
+            and <strong>Sodium-Ion</strong> and <strong>Solid-State</strong> are transitioning rapidly from pilot labs into commercial production.
+          </p>
+          <div class="p-3 rounded-3 bg-secondary bg-opacity-25 border border-secondary border-opacity-25 mt-3">
+            <strong class="text-success d-block mb-1"><i class="fa-solid fa-tree me-1"></i> Environmental Net Balance:</strong>
+            The global EV fleet avoided over <strong>280 Million Metric Tons</strong> of CO2 emissions in 2025 alone, offsetting upstream manufacturing footprints within 16 months.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="p-4 rounded-4 bg-dark border border-secondary border-opacity-50 text-center">
+            <i class="fa-solid fa-battery-full text-success display-4 mb-3"></i>
+            <h4 class="text-white fw-bold mb-1">3,000+ Cycle Life</h4>
+            <p class="text-muted small mb-0">LFP chemistry enables million-mile vehicle battery durability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 5 -->
+    <div id="storyScene5" class="glass-card p-4 p-lg-5 mb-4" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-purple text-light" style="background: #8b5cf6;">Scene 5 of 5</span>
+        <span class="text-muted small"><i class="fa-solid fa-compass me-1"></i> Strategic Synthesis</span>
+      </div>
+      <h3 class="fw-bold text-white mb-3">The 2026–2030 Executive Roadmap: Navigating the Next Wave</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-7">
+          <p class="lead text-light opacity-90">
+            The next chapter of electric mobility will be decided by charging speed parity, grid harmonization, and software-defined architectures.
+          </p>
+          <p class="text-muted">
+            To sustain leadership, automotive OEMs and policymakers must execute four critical strategic initiatives:
+          </p>
+          <ul class="text-light opacity-90 small">
+            <li><strong>800V & Megawatt Charging:</strong> Reduce 10-80% charge times to under 12 minutes to erase remaining consumer range anxiety.</li>
+            <li><strong>Battery Raw Material Diversification:</strong> Scale Sodium-Ion to hedge lithium supply crunches and reduce reliance on critical minerals.</li>
+            <li><strong>Closed-Loop Recycling:</strong> Mandate 95%+ recovery of nickel, cobalt, and lithium to establish circular battery gigafactories.</li>
+            <li><strong>Sub-$25,000 Mass Models:</strong> Unlock the next 500 million global drivers with localized modular EV platforms.</li>
+          </ul>
+        </div>
+        <div class="col-md-5">
+          <div class="p-4 rounded-4 bg-dark border border-secondary border-opacity-50 text-center">
+            <i class="fa-solid fa-rocket text-purple display-4 mb-3" style="color: #a855f7;"></i>
+            <h4 class="text-white fw-bold mb-1">2026–2030 Horizon</h4>
+            <p class="text-muted small mb-0">Transition from early adoption to universal mobility standard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="btn btn-outline-custom" onclick="prevStoryScene()">
+        <i class="fa-solid fa-arrow-left me-1"></i> Previous Scene
+      </button>
+      <div class="d-flex gap-2">
+        <a href="{{ url_for('tableau_embed') }}" class="btn btn-outline-info">
+          <i class="fa-solid fa-chart-line me-1"></i> Explore Tableau Story
+        </a>
+        <button class="btn btn-primary-gradient" onclick="nextStoryScene()">
+          Next Scene <i class="fa-solid fa-arrow-right ms-1"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

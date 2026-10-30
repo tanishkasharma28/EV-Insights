@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Electric Vehicle Market Performance & Insights{% endblock %}</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar navbar-expand-xl navbar-dark navbar-custom sticky-top">
+    <div class="container-fluid px-lg-4">
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <i class="fa-solid fa-bolt-lightning text-warning"></i>
+        <span>EV Insights 360</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{{ url_for('index') }}">
+              <i class="fa-solid fa-gauge-high me-1"></i> Overview
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'scenario/emily' in request.path %}active{% endif %}" href="{{ url_for('scenario_emily') }}">
+              <i class="fa-solid fa-chart-pie me-1"></i> Strategy (Emily)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'scenario/david' in request.path %}active{% endif %}" href="{{ url_for('scenario_david') }}">
+              <i class="fa-solid fa-briefcase me-1"></i> BI Intel (David)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'scenario/sarah' in request.path %}active{% endif %}" href="{{ url_for('scenario_sarah') }}">
+              <i class="fa-solid fa-leaf me-1"></i> Research (Dr. Sarah)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'story' in request.path %}active{% endif %}" href="{{ url_for('story') }}">
+              <i class="fa-solid fa-book-open me-1"></i> Story Mode
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'tableau' in request.path %}active{% endif %}" href="{{ url_for('tableau_embed') }}">
+              <i class="fa-solid fa-chart-line me-1"></i> Tableau Embed
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'sql-explorer' in request.path %}active{% endif %}" href="{{ url_for('sql_explorer') }}">
+              <i class="fa-solid fa-database me-1"></i> SQL Console
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'performance' in request.path %}active{% endif %}" href="{{ url_for('performance') }}">
+              <i class="fa-solid fa-tachograph-digital me-1"></i> Performance
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'documentation' in request.path %}active{% endif %}" href="{{ url_for('documentation') }}">
+              <i class="fa-solid fa-file-lines me-1"></i> Docs & Links
+            </a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="{{ url_for('documentation') }}#mentor-links" class="btn btn-sm btn-outline-info">
+            <i class="fa-solid fa-link me-1"></i> Mentor Demo & GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container-fluid px-lg-4 py-4">
+    <!-- Mentor Review Alert Banner -->
+    <div class="mentor-banner">
+      <div class="d-flex align-items-center gap-3">
+        <i class="fa-solid fa-circle-check text-success fs-4"></i>
+        <div>
+          <strong class="text-white">Mentor Evaluation Ready:</strong>
+          <span class="text-light opacity-75 ms-1">Electric Vehicle Market Performance & Insights end-to-end solution.</span>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="https://github.com/your-username/electric-vehicle-market-insights" target="_blank" class="btn btn-sm btn-outline-custom">
+          <i class="fa-brands fa-github me-1"></i> GitHub Repository
+        </a>
+        <a href="{{ url_for('tableau_embed') }}" class="btn btn-sm btn-primary-gradient">
+          <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Live Tableau Demo
+        </a>
+      </div>
+    </div>
+
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 py-4 border-top border-secondary border-opacity-25 text-center text-muted">
+    <div class="container">
+      <p class="mb-1">Electric Vehicle Market Performance & Insights | Capstone Analytics Project</p>
+      <small>Powered by Tableau BI, SQLite3, Python 3.14, and Flask Framework.</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
